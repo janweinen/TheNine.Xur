@@ -4,9 +4,15 @@ import Content from "./Content";
 import Header from "./Header";
 import img from "../../assets/images/edz_background.jpg";
 
+const style = {
+  body: {
+    fontFamily: "sans-serif"
+  }
+};
+
 const Body = props => {
   return (
-    <div>
+    <div style={style.body}>
       <ImageBackground
         source={img}
         resizeMode={"cover"}

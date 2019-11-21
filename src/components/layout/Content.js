@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Inventory from "./Inventory";
-import { XurInventory } from "../FetchData";
 
 const style = {
   content: {
@@ -9,7 +8,6 @@ const style = {
 };
 
 const Content = props => {
-  console.log(props.data);
   return (
     <main style={style.content}>
       <Inventory data={props.data} title="EXOTIC GEAR" type="2,3" />

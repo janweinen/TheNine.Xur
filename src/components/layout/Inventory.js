@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Globals } from "../../Globals";
-import { XurInventory } from "../FetchData";
 
 const style = {
   inventory: {
@@ -15,7 +14,7 @@ const style = {
   },
   title: {
     marginLeft: "1em",
-    fontFamily: "sans-serif",
+    letterSpacing: "0.1em",
     color: "rgba(255,255,255,0.5)"
   },
   iconContainer: {
@@ -33,22 +32,17 @@ const style = {
 
 const Inventory = props => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    async function fetchData() {
-      const d = props.data;
-      const types = props.type.split(",").map(x => {
-        return parseInt(x, 10);
+    const d = props.data;
+    const types = props.type.split(",").map(x => {
+      return parseInt(x, 10);
+    });
+    const filteredData = d.filter(item => {
+      return types.some(type => {
+        return type === item.itemType;
       });
-      const filteredData = d.filter(item => {
-        return types.some(type => {
-          return type === item.itemType;
-        });
-      });
-      setData(filteredData);
-      setLoading(false);
-    }
-    fetchData();
+    });
+    setData(filteredData);
   }, [props]);
 
   return (
@@ -56,20 +50,16 @@ const Inventory = props => {
       <div style={style.topBar}>
         <span style={style.title}>{props.title}</span>
       </div>
-      {loading ? (
-        <div>...loading</div>
-      ) : (
-        <div style={style.iconContainer}>
-          {data.map(item => (
-            <img
-              src={Globals.url.bungie + item.displayProperties.icon}
-              alt="icon"
-              key={item.hash}
-              style={style.icon}
-            />
-          ))}
-        </div>
-      )}
+      <div style={style.iconContainer}>
+        {data.map(item => (
+          <img
+            src={Globals.url.bungie + item.displayProperties.icon}
+            alt="icon"
+            key={item.hash}
+            style={style.icon}
+          />
+        ))}
+      </div>
     </div>
   );
 };
