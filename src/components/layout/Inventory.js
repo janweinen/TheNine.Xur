@@ -21,7 +21,7 @@ const style = {
   iconContainer: {
     marginLeft: "1em",
     marginRight: "1em",
-    paddingTop: "0.5em",
+    paddingTop: "0.7em",
     borderTop: "2px solid rgba(255,255,255,0.7)"
   },
   icon: {
