@@ -4,7 +4,7 @@ import Content from "./Content";
 import Header from "./Header";
 import img from "../../assets/images/edz_background.jpg";
 
-const Body = () => {
+const Body = props => {
   return (
     <div>
       <ImageBackground
@@ -17,7 +17,7 @@ const Body = () => {
         }}
       >
         <Header />
-        <Content />
+        <Content data={props.data} />
       </ImageBackground>
     </div>
   );

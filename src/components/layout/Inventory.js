@@ -36,7 +36,7 @@ const Inventory = props => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
-      const d = await XurInventory();
+      const d = props.data;
       const types = props.type.split(",").map(x => {
         return parseInt(x, 10);
       });
