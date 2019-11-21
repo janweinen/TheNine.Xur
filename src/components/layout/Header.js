@@ -1,5 +1,4 @@
 import React from "react";
-import { ReactComponent as Logo } from "../../assets/images/xur_logo.svg";
 
 const style = {
   header: {

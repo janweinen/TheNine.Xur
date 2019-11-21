@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Globals } from "../../Globals";
+import { ReactComponent as Arrow } from "../../assets/images/arrow.svg";
 
 const style = {
   inventory: {
@@ -13,7 +14,7 @@ const style = {
     backgroundColor: "rgba(255,255,255,0.3)"
   },
   title: {
-    marginLeft: "1em",
+    marginLeft: "0.5em",
     letterSpacing: "0.1em",
     color: "rgba(255,255,255,0.5)"
   },
@@ -27,6 +28,12 @@ const style = {
     width: "60px",
     border: "1px solid rgba(255,255,255,0.5)",
     marginRight: "0.2em"
+  },
+  arrow: {
+    fill: "#ffffff",
+    width: "1em",
+    opacity: "0.5",
+    marginLeft: "1em"
   }
 };
 
@@ -48,6 +55,7 @@ const Inventory = props => {
   return (
     <div style={style.inventory}>
       <div style={style.topBar}>
+        <Arrow style={style.arrow} />
         <span style={style.title}>{props.title}</span>
       </div>
       <div style={style.iconContainer}>
