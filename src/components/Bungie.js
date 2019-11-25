@@ -5,8 +5,13 @@ const url = new URL(url_string);
 const code = url.searchParams.get("code");
 
 const apiRequest = async (path, options = {}) => {
-  const request = await fetch(path, options).then(r => r.json());
-  return request;
+  try {
+    const request = await fetch(path, options);
+    const result = await request.json();
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getXurInventory = async () =>

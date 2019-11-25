@@ -9,6 +9,7 @@ const style = {
   logo: {
     padding: "2em",
     affinity: {
+      color: "rgba(255,255,255,0.95)",
       fontSize: "0.7em",
       letterSpacing: "0.2em"
     },
@@ -33,17 +34,15 @@ const style = {
       }
     },
     name: {
+      color: "rgba(255,255,255,0.95)",
       fontSize: "3em",
       fontWeight: "bold",
       letterSpacing: "-0.05em"
     },
-    description: {}
-  },
-  text: {
-    color: "#ffffff",
-    position: "relative",
-    marginLeft: "4em",
-    paddingBottom: "1em"
+    description: {
+      color: "rgba(255,255,255,0.6)",
+      position: "relative"
+    }
   }
 };
 
@@ -55,8 +54,7 @@ const Header = () => {
         <hr style={style.logo.line.fat} />
         <div style={style.logo.name}>XÛR</div>
         <hr style={style.logo.line.thin} />
-        {/*<Logo style={style.logo} />*/}
-        <div style={style.logo.text}>
+        <div style={style.logo.description}>
           A peddler of strange curios, Xûr's motives are not his own. He bows to
           his distant masters, the Nine.
         </div>

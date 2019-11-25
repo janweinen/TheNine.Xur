@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Globals } from "../../Globals";
 import { ReactComponent as Arrow } from "../../assets/images/arrow.svg";
+import DataContext from "../Context";
 
 const style = {
   inventory: {
@@ -25,7 +26,7 @@ const style = {
     borderTop: "2px solid rgba(255,255,255,0.7)"
   },
   icon: {
-    width: "60px",
+    width: "50px",
     border: "1px solid rgba(255,255,255,0.5)",
     marginRight: "0.2em"
   },
@@ -38,19 +39,19 @@ const style = {
 };
 
 const Inventory = props => {
+  const inventory = useContext(DataContext);
   const [data, setData] = useState([]);
   useEffect(() => {
-    const d = props.data;
     const types = props.type.split(",").map(x => {
       return parseInt(x, 10);
     });
-    const filteredData = d.filter(item => {
+    const filteredData = inventory.filter(item => {
       return types.some(type => {
         return type === item.itemType;
       });
     });
     setData(filteredData);
-  }, [props]);
+  }, [inventory, props.type]);
 
   return (
     <div style={style.inventory}>

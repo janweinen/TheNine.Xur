@@ -7,12 +7,12 @@ const style = {
   }
 };
 
-const Content = props => {
+const Content = () => {
   return (
     <main style={style.content}>
-      <Inventory data={props.data} title="EXOTIC GEAR" type="2,3" />
-      <Inventory data={props.data} title="CONSUMABLES" type="9" />
-      <Inventory data={props.data} title="INVITATIONS" type="0" />
+      <Inventory title="EXOTIC GEAR" type="2,3" />
+      <Inventory title="CONSUMABLES" type="9" />
+      <Inventory title="INVITATIONS" type="0" />
     </main>
   );
 };

@@ -15,12 +15,12 @@ firebase.initializeApp(firebaseConfig);
 const storage = firebase.firestore();
 
 export const firestoreRequest = async (collection, doc) => {
-  const request = storage.collection(collection).doc(doc);
+  const request = await storage.collection(collection).doc(doc);
   const snapshot = await request.get();
   return snapshot.data();
 };
 
 export const firestoreSave = async (collection, doc, data) => {
-  const store = storage.collection(collection).doc(doc);
+  const store = await storage.collection(collection).doc(doc);
   store.set({ data });
 };

@@ -1,30 +1,36 @@
 import React from "react";
-import { ImageBackground } from "react-native";
 import Content from "./Content";
 import Header from "./Header";
-import img from "../../assets/images/edz_background.jpg";
-
+import Earth from "../../assets/images/Earth.jpg";
+import Nessus from "../../assets/images/Nessus.jpg";
+import { HasXurArrived } from "../helpers/hasXurArrived";
+/*
 const style = {
   body: {
-    fontFamily: "sans-serif"
+    minHeight: "100vh",
+    fontFamily: "sans-serif",
+    backgroundImage: `url(${Background})`,
+    backgroundPosition: "left",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat"
   }
 };
-
+*/
 const Body = props => {
   return (
-    <div style={style.body}>
-      <ImageBackground
-        source={img}
-        resizeMode={"cover"}
-        style={{
-          flex: 1,
-          width: "100vw",
-          height: "100vh"
-        }}
-      >
-        <Header />
-        <Content data={props.data} />
-      </ImageBackground>
+    <div
+      style={{
+        minHeight: "100vh",
+        fontFamily: "sans-serif",
+        backgroundImage: `url(${Earth})`,
+        backgroundPosition: "left",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
+      }}
+    >
+      <Header />
+      <HasXurArrived />
+      <Content />
     </div>
   );
 };
