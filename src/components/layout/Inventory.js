@@ -16,7 +16,6 @@ const style = {
   },
   title: {
     marginLeft: "0.5em",
-    letterSpacing: "0.1em",
     color: "rgba(255,255,255,0.5)"
   },
   iconContainer: {
@@ -26,9 +25,9 @@ const style = {
     borderTop: "2px solid rgba(255,255,255,0.7)"
   },
   icon: {
-    width: "50px",
+    width: "70px",
     border: "1px solid rgba(255,255,255,0.5)",
-    marginRight: "0.2em"
+    marginRight: "0.3em"
   },
   arrow: {
     fill: "#ffffff",

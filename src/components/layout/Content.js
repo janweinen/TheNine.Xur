@@ -3,7 +3,7 @@ import Inventory from "./Inventory";
 
 const style = {
   content: {
-    padding: "2em"
+    padding: "1em"
   }
 };
 

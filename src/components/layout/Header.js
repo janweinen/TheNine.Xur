@@ -10,6 +10,7 @@ const style = {
     padding: "2em",
     affinity: {
       color: "rgba(255,255,255,0.95)",
+      marginLeft: "0.5em",
       fontSize: "0.7em",
       letterSpacing: "0.2em"
     },
