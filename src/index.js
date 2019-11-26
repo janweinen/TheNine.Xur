@@ -14,18 +14,21 @@ const App = () => {
   useEffect(() => {
     async function init() {
       const nextRefreshDate = await getNextRefreshDate();
-      const database = await firestoreRequest("inventories", nextRefreshDate);
+      const databaseInventory = await firestoreRequest(
+        "inventories",
+        nextRefreshDate
+      );
       const location = await firestoreRequest("xur", "location");
       const bgImagePath = await getBGImagePath(location.data);
       setbBgImage(bgImagePath);
-      if (database === undefined) {
+      if (databaseInventory === undefined) {
         console.log("database entry does not exist!");
-        const inventory = await xurData();
-        firestoreSave("inventories", nextRefreshDate, inventory);
-        setData(inventory);
+        const bungieInventory = await xurData();
+        firestoreSave("inventories", nextRefreshDate, bungieInventory);
+        setData(bungieInventory);
       } else {
         console.log("database entry exists!");
-        setData(database);
+        setData(databaseInventory);
       }
       setLoading(false);
     }
