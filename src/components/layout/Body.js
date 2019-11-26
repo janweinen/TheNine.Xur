@@ -1,7 +1,7 @@
 import React from "react";
 import Content from "./Content";
 import Header from "./Header";
-import { HasXurArrived } from "../helpers/hasXurArrived";
+import { HasXurArrived } from "../utils/hasXurArrived";
 
 const Body = props => {
   return (

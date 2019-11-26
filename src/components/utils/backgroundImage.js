@@ -1,5 +1,6 @@
 import Earth from "../../assets/images/Earth.jpg";
 import Nessus from "../../assets/images/Nessus.jpg";
+import Orbit from "../../assets/images/Orbit.jpg";
 
 export const getBGImagePath = async location => {
   switch (location) {
@@ -8,6 +9,6 @@ export const getBGImagePath = async location => {
     case "Earth":
       return Earth;
     default:
-      return Earth;
+      return Orbit;
   }
 };

@@ -12,15 +12,15 @@ const firebaseConfig = {
   appId: "1:739280273977:web:d0adee2748cd5460"
 };
 firebase.initializeApp(firebaseConfig);
-const storage = firebase.firestore();
+const database = firebase.firestore();
 
 export const firestoreRequest = async (collection, doc) => {
-  const request = await storage.collection(collection).doc(doc);
+  const request = await database.collection(collection).doc(doc);
   const snapshot = await request.get();
   return snapshot.data();
 };
 
 export const firestoreSave = async (collection, doc, data) => {
-  const store = await storage.collection(collection).doc(doc);
+  const store = await database.collection(collection).doc(doc);
   store.set({ data });
 };

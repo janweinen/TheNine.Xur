@@ -17,8 +17,8 @@ export const HasXurArrived = () => {
     xur = "yes";
   } else if ([6, 0, 1].indexOf(day) !== -1) {
     xur = "yes";
-  } else if (day === 2 && hour >= 18) {
-    xur = "no";
+  } else if (day === 2 && hour <= 18) {
+    xur = "yes";
   }
 
   return <div>{xur}</div>;

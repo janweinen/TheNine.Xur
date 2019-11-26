@@ -4,7 +4,7 @@ import {
   getJSONWorldContentPaths
 } from "./Bungie";
 
-export const XurInventory = async () => {
+export const xurData = async () => {
   const result = await getXurInventory();
   const manifest = await getManifest();
   const jsonWorldContentPaths = await getJSONWorldContentPaths(
@@ -16,4 +16,11 @@ export const XurInventory = async () => {
     item => jsonWorldContentPaths.DestinyInventoryItemDefinition[item.itemHash]
   );
   return data;
+};
+
+export const getNextRefreshDate = async () => {
+  const result = await getXurInventory();
+  const nextRefreshDate =
+    result.Response.vendors.data[2190858386].nextRefreshDate;
+  return nextRefreshDate;
 };
