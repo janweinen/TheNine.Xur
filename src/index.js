@@ -28,14 +28,14 @@ const App = () => {
         setData(bungieInventory);
       } else {
         console.log("database entry exists!");
-        setData(databaseInventory);
+        setData(databaseInventory.data);
       }
       setLoading(false);
     }
     init();
   }, []);
   return (
-    <DataProvider value={data.data}>
+    <DataProvider value={data}>
       {loading ? <div>...loading</div> : <Body location={bgImage} />}
     </DataProvider>
   );
