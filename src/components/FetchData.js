@@ -20,6 +20,7 @@ export const xurData = async () => {
 
 export const getNextRefreshDate = async () => {
   const result = await getXurInventory();
+  console.log(result);
   const nextRefreshDate =
     result.Response.vendors.data[2190858386].nextRefreshDate;
   return nextRefreshDate;

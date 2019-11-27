@@ -1,7 +1,6 @@
 import React from "react";
 import Content from "./Content";
 import Header from "./Header";
-import { HasXurArrived } from "../utils/hasXurArrived";
 
 const Body = props => {
   return (
@@ -10,13 +9,12 @@ const Body = props => {
         minHeight: "100vh",
         fontFamily: "sans-serif",
         backgroundImage: `url(${props.location})`,
-        backgroundPosition: "left",
+        backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat"
       }}
     >
       <Header />
-      <HasXurArrived />
       <Content />
     </div>
   );
