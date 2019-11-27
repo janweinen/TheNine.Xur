@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./styles.css";
 import Body from "./components/layout/Body";
-import { xurData, getNextRefreshDate } from "./components/FetchData";
+import { getXurInventory } from "./components/utils/getXurInventory";
+import { checkReset } from "./components/utils/checkReset";
 import {
   firestoreRequest,
   firestoreSave,
@@ -10,7 +11,6 @@ import {
 } from "./components/Firebase";
 import { DataProvider } from "./components/Context";
 import { getBGImagePath } from "./components/utils/backgroundImage";
-import { xurHasArrived } from "./components/utils/xurHasArrived";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -19,30 +19,33 @@ const App = () => {
   useEffect(() => {
     async function init() {
       try {
+        const reset = await checkReset();
+        console.log(reset);
         let nextRefreshDate = "";
         const xur = await firestoreRequest("vendors", "xur");
-        if (xurHasArrived()) {
-          nextRefreshDate = await getNextRefreshDate();
+        if (reset.done) {
+          nextRefreshDate = reset.nextRefreshDate;
           firestoreUpdate("vendors", "xur", {
             nextRefreshDate: nextRefreshDate
           });
         } else {
           nextRefreshDate = xur.nextRefreshDate;
         }
-        const databaseInventory = await firestoreRequest(
-          "inventories",
-          nextRefreshDate
-        );
+        const databaseInventory = await firestoreRequest("inventories", "xur");
+        //firestoreUpdate("vendors", "xur", {[nextRefreshDate]: databaseInventory.data});
         const bgImagePath = await getBGImagePath(xur.location);
         setbBgImage(bgImagePath);
         if (databaseInventory === undefined) {
           console.log("database entry does not exist!");
-          const bungieInventory = await xurData();
-          firestoreSave("inventories", nextRefreshDate, bungieInventory);
-          setData(bungieInventory);
+          const xurInventory = await getXurInventory();
+          firestoreSave("inventories", "xur", {
+            [nextRefreshDate]: xurInventory
+          });
+          //firestoreSave("inventories", nextRefreshDate, bungieInventory);
+          setData(xurInventory);
         } else {
           console.log("database entry exists!");
-          setData(databaseInventory.data);
+          setData(databaseInventory[nextRefreshDate]);
         }
         setLoading(false);
       } catch (error) {

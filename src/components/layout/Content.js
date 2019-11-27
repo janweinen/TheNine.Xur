@@ -3,7 +3,9 @@ import Inventory from "./Inventory";
 
 const style = {
   content: {
-    padding: "1em"
+    paddingTop: "3em",
+    paddingLeft: "1em",
+    paddingRight: "1em"
   }
 };
 

@@ -14,7 +14,7 @@ const apiRequest = async (path, options = {}) => {
   }
 };
 
-export const getXurInventory = async () =>
+export const getXurEndpoint = async () =>
   apiRequest(
     "https://www.bungie.net/Platform/Destiny2/Vendors/?components=400,401,402,403",
     {

@@ -22,7 +22,7 @@ export const firestoreRequest = async (collection, doc) => {
 
 export const firestoreSave = async (collection, doc, data) => {
   const store = await database.collection(collection).doc(doc);
-  store.set({ data });
+  store.set(data);
 };
 
 export const firestoreUpdate = async (collection, doc, data) => {

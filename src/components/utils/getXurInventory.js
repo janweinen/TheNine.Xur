@@ -2,7 +2,7 @@ import {
   getXurEndpoint,
   getManifest,
   getJSONWorldContentPaths
-} from "./Bungie";
+} from "../Bungie";
 
 export const getXurInventory = async () => {
   const result = await getXurEndpoint();
@@ -16,15 +16,4 @@ export const getXurInventory = async () => {
     item => jsonWorldContentPaths.DestinyInventoryItemDefinition[item.itemHash]
   );
   return data;
-};
-
-export const checkReset = async () => {
-  const result = await getXurEndpoint();
-  try {
-    const nextRefreshDate =
-      result.Response.vendors.data[2190858386].nextRefreshDate;
-    return [true, nextRefreshDate];
-  } catch (error) {
-    return [false, ""];
-  }
 };
