@@ -23,7 +23,7 @@ const App = () => {
         console.log(reset);
         let nextRefreshDate = "";
         const xur = await firestoreRequest("vendors", "xur");
-        if (reset.done) {
+        if (reset.done && reset.nextRefreshDate !== xur.nextRefreshDate) {
           nextRefreshDate = reset.nextRefreshDate;
           firestoreUpdate("vendors", "xur", {
             nextRefreshDate: nextRefreshDate
@@ -35,7 +35,7 @@ const App = () => {
         //firestoreUpdate("vendors", "xur", {[nextRefreshDate]: databaseInventory.data});
         const bgImagePath = await getBGImagePath(xur.location);
         setbBgImage(bgImagePath);
-        if (databaseInventory === undefined) {
+        if (databaseInventory[nextRefreshDate] === undefined) {
           console.log("database entry does not exist!");
           const xurInventory = await getXurInventory();
           firestoreSave("inventories", "xur", {
