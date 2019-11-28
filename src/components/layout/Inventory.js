@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Globals } from "../../Globals";
+import { Globals } from "../Globals";
 import { ReactComponent as Arrow } from "../../assets/images/arrow.svg";
 import DataContext from "../Context";
 

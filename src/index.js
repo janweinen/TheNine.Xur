@@ -35,7 +35,6 @@ const App = () => {
           firestoreSave("inventories", "xur", {
             [nextRefreshDate]: xurInventory
           });
-          //firestoreSave("inventories", nextRefreshDate, bungieInventory);
           setData(xurInventory);
         } else {
           nextRefreshDate = xur.nextRefreshDate;
