@@ -5,7 +5,8 @@ const style = {
   content: {
     paddingTop: "3em",
     paddingLeft: "1em",
-    paddingRight: "1em"
+    paddingRight: "1em",
+    paddingBottom: "1em"
   }
 };
 

@@ -20,21 +20,36 @@ const App = () => {
     async function init() {
       try {
         const reset = await checkReset();
+        const xur = await firestoreRequest("vendors", "xur");
+        const bgImagePath = await getBGImagePath(xur.location);
         console.log(reset);
         let nextRefreshDate = "";
-        const xur = await firestoreRequest("vendors", "xur");
+        setbBgImage(bgImagePath);
         if (reset.done && reset.nextRefreshDate !== xur.nextRefreshDate) {
           nextRefreshDate = reset.nextRefreshDate;
           firestoreUpdate("vendors", "xur", {
             nextRefreshDate: nextRefreshDate
           });
+          console.log("database entry does not exist!");
+          const xurInventory = await getXurInventory();
+          firestoreSave("inventories", "xur", {
+            [nextRefreshDate]: xurInventory
+          });
+          //firestoreSave("inventories", nextRefreshDate, bungieInventory);
+          setData(xurInventory);
         } else {
           nextRefreshDate = xur.nextRefreshDate;
+          console.log("database entry exists!");
+          const databaseInventory = await firestoreRequest(
+            "inventories",
+            "xur"
+          );
+          setData(databaseInventory[nextRefreshDate]);
         }
-        const databaseInventory = await firestoreRequest("inventories", "xur");
+
         //firestoreUpdate("vendors", "xur", {[nextRefreshDate]: databaseInventory.data});
-        const bgImagePath = await getBGImagePath(xur.location);
-        setbBgImage(bgImagePath);
+
+        /*
         if (databaseInventory[nextRefreshDate] === undefined) {
           console.log("database entry does not exist!");
           const xurInventory = await getXurInventory();
@@ -47,6 +62,7 @@ const App = () => {
           console.log("database entry exists!");
           setData(databaseInventory[nextRefreshDate]);
         }
+        */
         setLoading(false);
       } catch (error) {
         console.log(error);
