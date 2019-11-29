@@ -15,6 +15,7 @@ import { getBGImagePath } from "./components/utils/backgroundImage";
 const App = () => {
   const [data, setData] = useState([]);
   const [bgImage, setbBgImage] = useState(null);
+  const [message, setMessage] = useState("Loading...");
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function init() {
@@ -30,7 +31,7 @@ const App = () => {
           firestoreUpdate("vendors", "xur", {
             nextRefreshDate: nextRefreshDate
           });
-          console.log("database entry does not exist!");
+          setMessage("Downloading data from Bungie...");
           const xurInventory = await getXurInventory();
           firestoreSave("inventories", "xur", {
             [nextRefreshDate]: xurInventory
@@ -38,7 +39,7 @@ const App = () => {
           setData(xurInventory);
         } else {
           nextRefreshDate = xur.nextRefreshDate;
-          console.log("database entry exists!");
+          setMessage("Downloading data from Database...");
           const databaseInventory = await firestoreRequest(
             "inventories",
             "xur"
@@ -71,7 +72,7 @@ const App = () => {
   }, []);
   return (
     <DataProvider value={data}>
-      {loading ? <div>...loading</div> : <Body location={bgImage} />}
+      {loading ? <div>{message}</div> : <Body location={bgImage} />}
     </DataProvider>
   );
 };
