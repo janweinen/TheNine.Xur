@@ -65,7 +65,7 @@ const App = () => {
         */
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        setMessage("Error: " + error);
       }
     }
     init();
