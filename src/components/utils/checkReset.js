@@ -5,8 +5,15 @@ export const checkReset = async () => {
   try {
     const nextRefreshDate =
       result.Response.vendors.data[2190858386].nextRefreshDate;
-    return { done: true, nextRefreshDate: nextRefreshDate };
+    const Inventory = Object.values(
+      result.Response.sales.data[2190858386].saleItems
+    );
+    return {
+      done: true,
+      nextRefreshDate: nextRefreshDate,
+      inventoryLength: Inventory.length
+    };
   } catch (error) {
-    return { done: false, nextRefreshDate: "" };
+    return { done: false };
   }
 };

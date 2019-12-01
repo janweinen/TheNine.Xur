@@ -26,7 +26,11 @@ const App = () => {
         console.log(reset);
         let nextRefreshDate = "";
         setbBgImage(bgImagePath);
-        if (reset.done && reset.nextRefreshDate !== xur.nextRefreshDate) {
+        if (
+          reset.done &&
+          reset.nextRefreshDate !== xur.nextRefreshDate &&
+          reset.inventoryLength > 2
+        ) {
           nextRefreshDate = reset.nextRefreshDate;
           firestoreUpdate("vendors", "xur", {
             nextRefreshDate: nextRefreshDate
