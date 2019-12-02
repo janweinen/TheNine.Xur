@@ -5,7 +5,7 @@ const Modal = ({ children, activator }) => {
   const [show, setShow] = useState(false);
   const content = show && (
     <div className="overlay">
-      <div className={`modal ${show ? "modal-open" : ""}`}>
+      <div className="modal" style={{ animation: "fadeIn 200ms" }}>
         <button
           className="modal-close"
           type="button"
