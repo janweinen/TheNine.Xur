@@ -87,10 +87,11 @@ const Inventory = props => {
             )}
           >
             <div style={style.modal.header}>
-            <img
+              <img
                 src={Globals.url.bungie + item.displayProperties.icon}
                 alt="icon"
-                style={style.icon}/>
+                style={style.icon}
+              />
               <span>{item.displayProperties.name}</span>
             </div>
             {item.screenshot === undefined ? (

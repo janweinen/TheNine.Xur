@@ -11,9 +11,8 @@ body {
   color: #ffffff;
 }
 
-.modal {
+.overlay {
   position: fixed;
-  color: black;
   top: 0;
   right: 0;
   bottom: 0;
@@ -21,11 +20,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 98;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+  position: relative;
   z-index: 99;
   width: 100%;
   height: 100%;
   max-width: 768px;
   margin: 0 auto;
+  transform: translateY(100vh);
+}
+
+.modal-open {
+  transform: translateY(0);
+  transition: transform 500ms;
 }
 
 .modal-close {
@@ -44,22 +57,4 @@ body {
   background-color: white;
   width: 100%;
   height: 100%;
-}
-
-.modal-transition-enter .modal { 
-  transform: translateY(100vh);
-}
-
-.modal-transition-enter-active .modal {
-  transform: translateX(0) translateY(0);
-  transition: transform 200ms;
-}
-
-.modal-transition-exit .modal { 
-  transform: translateY(0);
-}
-
-.modal-transition-exit-active .modal {
-  transform: translateY(100vh);
-  transition: transform 200ms;
 }
