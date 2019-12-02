@@ -56,8 +56,10 @@ const Header = () => {
         <div style={style.logo.name}>XÛR</div>
         <hr style={style.logo.line.thin} />
         <div style={style.logo.description}>
-          A peddler of strange curios, Xûr's motives are not his own. He bows to
-          his distant masters, the Nine.
+          <p>
+            A peddler of strange curios, Xûr's motives are not his own. He bows
+            to his distant masters, the Nine.
+          </p>
         </div>
       </div>
     </header>

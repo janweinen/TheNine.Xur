@@ -3,6 +3,7 @@ import { Globals } from "../Globals";
 import { ReactComponent as Arrow } from "../../assets/images/arrow.svg";
 import DataContext from "../Context";
 import Modal from "./Modal";
+import Modals from "./Modals";
 
 const style = {
   inventory: {
@@ -37,6 +38,14 @@ const style = {
     marginLeft: "1em"
   },
   modal: {
+    header: {
+      backgroundColor: "rgba(206, 173, 50, 1)",
+      padding: "1.25rem 1.5rem",
+      fontFamily: "sans-serif",
+      color: "rgba(255,255,255,1)",
+      lineHeight: "70px",
+      fontSize: "2em"
+    },
     screenshot: {
       width: "100%"
     }
@@ -77,7 +86,13 @@ const Inventory = props => {
               />
             )}
           >
-            <h1>{item.displayProperties.name}</h1>
+            <div style={style.modal.header}>
+            <img
+                src={Globals.url.bungie + item.displayProperties.icon}
+                alt="icon"
+                style={style.icon}/>
+              <span>{item.displayProperties.name}</span>
+            </div>
             {item.screenshot === undefined ? (
               <span />
             ) : (
