@@ -10,3 +10,51 @@ body {
   background-color: #000000;
   color: #ffffff;
 }
+
+.modal {
+  position: fixed;
+  color: black;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-close {
+  position: absolute;
+  color: black;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  border: 0;
+  -webkit-appearance: none;
+  background: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 1.25rem 1.5rem;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-transition-enter .modal { 
+  transform: translateY(100vh);
+}
+
+.modal-transition-enter-active .modal {
+  transform: translateX(0) translateY(0);
+  transition: transform 200ms;
+}
+
+.modal-transition-exit-active .modal {
+  transform: translateY(100vh);
+  transition: transform 200ms;
+}

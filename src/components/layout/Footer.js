@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "./Modal";
 
 const style = {
   footer: {
@@ -32,10 +33,16 @@ const style = {
 const Footer = () => {
   return (
     <footer style={style.footer}>
-      <div style={style.about}>
-        <span style={style.icon}>A</span>
-        <span style={style.title}>ABOUT</span>
-      </div>
+      <Modal
+        activator={({ setShow }) => (
+          <div style={style.about} onClick={() => setShow(true)}>
+            <span style={style.icon}>A</span>
+            <span style={style.title}>ABOUT</span>
+          </div>
+        )}
+      >
+        This is inside the modal!
+      </Modal>
     </footer>
   );
 };

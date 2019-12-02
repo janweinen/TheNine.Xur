@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Globals } from "../Globals";
 import { ReactComponent as Arrow } from "../../assets/images/arrow.svg";
 import DataContext from "../Context";
+import Modal from "./Modal";
 
 const style = {
   inventory: {
@@ -34,6 +35,11 @@ const style = {
     width: "1em",
     opacity: "0.5",
     marginLeft: "1em"
+  },
+  modal: {
+    screenshot: {
+      width: "100%"
+    }
   }
 };
 
@@ -60,12 +66,29 @@ const Inventory = props => {
       </div>
       <div style={style.iconContainer}>
         {data.map(item => (
-          <img
-            src={Globals.url.bungie + item.displayProperties.icon}
-            alt="icon"
+          <Modal
             key={item.hash}
-            style={style.icon}
-          />
+            activator={({ setShow }) => (
+              <img
+                src={Globals.url.bungie + item.displayProperties.icon}
+                alt="icon"
+                style={style.icon}
+                onClick={() => setShow(true)}
+              />
+            )}
+          >
+            <h1>{item.displayProperties.name}</h1>
+            {item.screenshot === undefined ? (
+              <span />
+            ) : (
+              <img
+                style={style.modal.screenshot}
+                src={Globals.url.bungie + item.screenshot}
+                alt="icon"
+              />
+            )}
+            <p>{item.displayProperties.description}</p>
+          </Modal>
         ))}
       </div>
     </div>

@@ -50,23 +50,6 @@ const App = () => {
           );
           setData(databaseInventory[nextRefreshDate]);
         }
-
-        //firestoreUpdate("vendors", "xur", {[nextRefreshDate]: databaseInventory.data});
-
-        /*
-        if (databaseInventory[nextRefreshDate] === undefined) {
-          console.log("database entry does not exist!");
-          const xurInventory = await getXurInventory();
-          firestoreSave("inventories", "xur", {
-            [nextRefreshDate]: xurInventory
-          });
-          //firestoreSave("inventories", nextRefreshDate, bungieInventory);
-          setData(xurInventory);
-        } else {
-          console.log("database entry exists!");
-          setData(databaseInventory[nextRefreshDate]);
-        }
-        */
         setLoading(false);
       } catch (error) {
         setMessage("Error: " + error);
