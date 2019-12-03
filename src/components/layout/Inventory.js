@@ -3,7 +3,7 @@ import { Globals } from "../Globals";
 import { ReactComponent as Arrow } from "../../assets/images/arrow.svg";
 import DataContext from "../Context";
 import Modal from "./Modal";
-import { itemTierTypeColor } from "../utils/itemTierTypeColor";
+import { getItemTierTypeColor } from "../utils/getItemTierTypeColor";
 
 const style = {
   inventory: {
@@ -29,7 +29,8 @@ const style = {
   icon: {
     width: "70px",
     border: "1px solid rgba(255,255,255,0.5)",
-    marginRight: "0.3em"
+    marginRight: "0.3em",
+    cursor: "pointer"
   },
   arrow: {
     fill: "#ffffff",
@@ -98,7 +99,7 @@ const Inventory = props => {
           >
             <div
               style={{
-                backgroundColor: itemTierTypeColor(item.inventory.tierTypeName),
+                backgroundColor: getItemTierTypeColor(item.inventory.tierTypeName),
                 padding: "1.25rem 1.5rem",
                 fontFamily: "sans-serif"
               }}

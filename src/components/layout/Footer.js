@@ -12,7 +12,8 @@ const style = {
     backgroundColor: "rgba(0,0,0,0.5)",
     lineHeight: "3em",
     color: "rgba(255,255,255,0.5)",
-    textAlign: "right"
+    textAlign: "right",
+    cursor: "pointer"
   },
   title: {
     marginLeft: "0.5em",

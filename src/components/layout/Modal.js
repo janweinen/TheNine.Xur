@@ -14,7 +14,7 @@ const style = {
     zIndex: "98",
     height: "100%",
     width: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.3)"
+    backgroundColor: "rgba(0, 0, 0, 0.5)"
   },
   modal: {
     fontFamily: "sans-serif",
@@ -34,7 +34,7 @@ const style = {
     },
     close: {
       position: "absolute",
-      color: "black",
+      color: "white",
       top: "0",
       right: "0",
       padding: "5px",
