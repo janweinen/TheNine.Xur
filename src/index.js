@@ -11,11 +11,31 @@ import {
 } from "./components/Firebase";
 import { DataProvider } from "./components/Context";
 import { getBGImagePath } from "./components/utils/backgroundImage";
+import Default from "./assets/images/Default.jpg";
+
+const style = {
+  fontFamily: "sans-serif",
+  minHeight: "100vh",
+  width: "100vw",
+  backgroundImage: `url(${Default})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  message: {
+    color: "#000000",
+    position: "absolute",
+    width: "100%",
+    textAlign: "center",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)"
+  }
+};
 
 const App = () => {
   const [data, setData] = useState([]);
   const [bgImage, setbBgImage] = useState(null);
-  const [message, setMessage] = useState("Loading...");
+  const [message, setMessage] = useState("LOADING");
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function init() {
@@ -35,7 +55,7 @@ const App = () => {
           firestoreUpdate("vendors", "xur", {
             nextRefreshDate: nextRefreshDate
           });
-          setMessage("Downloading data from Bungie...");
+          setMessage("DOWNLOADING FROM BUNGIE");
           const xurInventory = await getXurInventory();
           firestoreSave("inventories", "xur", {
             [nextRefreshDate]: xurInventory
@@ -43,7 +63,7 @@ const App = () => {
           setData(xurInventory);
         } else {
           nextRefreshDate = xur.nextRefreshDate;
-          setMessage("Downloading data from Database...");
+          setMessage("DOWNLOADING FROM DATABASE");
           const databaseInventory = await firestoreRequest(
             "inventories",
             "xur"
@@ -59,7 +79,13 @@ const App = () => {
   }, []);
   return (
     <DataProvider value={data}>
-      {loading ? <div>{message}</div> : <Body location={bgImage} />}
+      {loading ? (
+        <div style={style}>
+          <div style={style.message}>{message}</div>
+        </div>
+      ) : (
+        <Body location={bgImage} />
+      )}
     </DataProvider>
   );
 };
