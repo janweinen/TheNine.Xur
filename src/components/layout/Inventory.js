@@ -3,6 +3,7 @@ import { Globals } from "../Globals";
 import { ReactComponent as Arrow } from "../../assets/images/arrow.svg";
 import DataContext from "../Context";
 import Modal from "./Modal";
+import { itemTierTypeColor } from "../utils/itemTierTypeColor";
 
 const style = {
   inventory: {
@@ -41,12 +42,23 @@ const style = {
       backgroundColor: "rgba(206, 173, 50, 1)",
       padding: "1.25rem 1.5rem",
       fontFamily: "sans-serif",
-      color: "rgba(255,255,255,1)",
-      lineHeight: "70px",
-      fontSize: "2em"
+      name: {
+        color: "rgba(255,255,255,1)",
+        fontSize: "2em"
+      },
+      type: {
+        color: "rgba(255,255,255,0.7)",
+        fontSize: "1em"
+      }
     },
     screenshot: {
       width: "100%"
+    },
+    text: {
+      color: "rgba(255,255,255,0.7)",
+      padding: "1.25rem 1.5rem",
+      fontStyle: "italic",
+      fontWeight: "light"
     }
   }
 };
@@ -65,7 +77,6 @@ const Inventory = props => {
     });
     setData(filteredData);
   }, [inventory, props.type]);
-
   return (
     <div style={style.inventory}>
       <div style={style.topBar}>
@@ -85,24 +96,30 @@ const Inventory = props => {
               />
             )}
           >
-            <div style={style.modal.header}>
-              <img
-                src={Globals.url.bungie + item.displayProperties.icon}
-                alt="icon"
-                style={style.icon}
-              />
-              <span>{item.displayProperties.name}</span>
+            <div
+              style={{
+                backgroundColor: itemTierTypeColor(item.inventory.tierTypeName),
+                padding: "1.25rem 1.5rem",
+                fontFamily: "sans-serif"
+              }}
+            >
+              <div style={style.modal.header.name}>
+                {item.displayProperties.name}
+              </div>
+              <div style={style.modal.header.type}>
+                {item.itemTypeDisplayName}
+              </div>
             </div>
-            {item.screenshot === undefined ? (
-              <span />
-            ) : (
+            {item.screenshot === undefined ? null : (
               <img
                 style={style.modal.screenshot}
                 src={Globals.url.bungie + item.screenshot}
-                alt="icon"
+                alt="screenshot"
               />
             )}
-            <p>{item.displayProperties.description}</p>
+            <div style={style.modal.text}>
+              <p>{item.displayProperties.description}</p>
+            </div>
           </Modal>
         ))}
       </div>
