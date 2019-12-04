@@ -41,10 +41,11 @@ export const getPerk = async () => {
     return {
       name: items.displayProperties.name,
       icon: items.displayProperties.icon,
-      itemTypeAndTierDisplayName: items.itemTypeAndTierDisplayName,
+      itemTypeDisplayName: items.itemTypeDisplayName,
       tierTypeName: items.inventory.tierTypeName,
       screenshot: items.screenshot || "none",
       description: items.displayProperties.description,
+      itemType: items.itemType,
       perks: perks
     };
   });
