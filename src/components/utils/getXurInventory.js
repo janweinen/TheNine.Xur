@@ -25,28 +25,36 @@ export const getPerk = async () => {
     manifest.Response.jsonWorldContentPaths.en
   );
   const data = Object.values(result.Response.sales.data[2190858386].saleItems);
-  let perks = null;
+  let allPerks = [];
+  let intrinsicPerk = [];
   const p = data.map(item => {
     const items =
       jsonWorldContentPaths.DestinyInventoryItemDefinition[item.itemHash];
     if ("sockets" in items) {
-      perks = items.sockets.socketEntries.map(entries => {
+      allPerks = items.sockets.socketEntries.map(entries => {
+        if (entries.socketTypeHash === parseInt("3956125808", 10)) {
+          intrinsicPerk =
+            jsonWorldContentPaths.DestinyInventoryItemDefinition[
+              entries.singleInitialItemHash
+            ];
+        }
         return jsonWorldContentPaths.DestinyInventoryItemDefinition[
           entries.singleInitialItemHash
         ];
       });
     } else {
-      perks = "none";
+      allPerks = [];
     }
     return {
       name: items.displayProperties.name,
       icon: items.displayProperties.icon,
       itemTypeDisplayName: items.itemTypeDisplayName,
       tierTypeName: items.inventory.tierTypeName,
-      screenshot: items.screenshot || "none",
+      screenshot: items.screenshot || "",
       description: items.displayProperties.description,
       itemType: items.itemType,
-      perks: perks
+      intrinsicPerk: intrinsicPerk,
+      allPerks: allPerks
     };
   });
   return p;
