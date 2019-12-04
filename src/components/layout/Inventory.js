@@ -108,7 +108,7 @@ const Inventory = props => {
                 {item.displayProperties.name}
               </div>
               <div style={style.modal.header.type}>
-                {item.itemTypeDisplayName}
+                {item.itemTypeAndTierDisplayName}
               </div>
             </div>
             {item.screenshot === undefined ? null : (

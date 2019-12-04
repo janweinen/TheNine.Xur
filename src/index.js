@@ -12,6 +12,7 @@ import {
 import { DataProvider } from "./components/Context";
 import { getBGImagePath } from "./components/utils/backgroundImage";
 import Default from "./assets/images/Default.jpg";
+import { getPerk } from "./components/utils/getXurInventory";
 
 const style = {
   fontFamily: "sans-serif",
@@ -44,6 +45,8 @@ const App = () => {
         const xur = await firestoreRequest("vendors", "xur");
         const bgImagePath = await getBGImagePath(xur.location);
         console.log(reset);
+        const test = await getPerk();
+        console.log(test);
         let nextRefreshDate = "";
         setbBgImage(bgImagePath);
         if (
