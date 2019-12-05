@@ -47,17 +47,20 @@ const style = {
     screenshot: {
       width: "100%"
     },
-    text: {
-      color: "rgba(255,255,255,0.7)",
-      padding: "1.25rem 1.5rem",
-      fontWeight: "lighter"
-    },
     quote: {
       color: "rgba(255,255,255,0.7)",
       padding: "1.25rem 1.5rem",
       fontStyle: "italic",
       fontWeight: "lighter",
       borderBottom: "1px solid rgba(255,255,255,0.3)"
+    },
+    text: {
+      color: "rgba(255,255,255,0.7)",
+      padding: "1.25rem 1.5rem",
+      fontWeight: "lighter"
+    },
+    link: {
+      color: "#EDC01D"
     }
   }
 };
@@ -82,16 +85,8 @@ const Footer = () => {
           <p style={style.modal.quote}>Per Audacia Ad Astra!</p>
           <p style={style.modal.text}>
             This website is developed by{" "}
-            <a href="https://twitter.com/JanWeinen">@janweinen</a>, WebDeveloper
-            from Cologne working in online advertising. I started this as a
-            passion project to teach myself React and state of the art
-            ECMAScript.
-            <br />
-            <br />
-            The website pulls data from Bungies Destiny 2 API and will remain in
-            a continous progression, meaning that I will update it regularly
-            with new features. Currently is it showing Xûrs weekly Inventory
-            which updates every Friday.
+            <a style={style.modal.link}href="https://twitter.com/JanWeinen">@janweinen</a>, WebDeveloper
+            from Cologne working in online advertising.
           </p>
         </div>
       </Modal>

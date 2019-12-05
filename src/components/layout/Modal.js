@@ -24,13 +24,13 @@ const style = {
     height: "100%",
     maxWidth: "768px",
     margin: "0 auto",
-    backgroundColor: "rgba(30,30,30,0.8)",
-    backdropFilter: "blur(10px)",
-    WebkitBackdropFilter: "blur(10px)",
     animation: "fadeIn 200ms",
     body: {
       width: "100%",
-      height: "100%"
+      height: "100%",
+      backgroundColor: "rgba(30,30,30,0.8)",
+      backdropFilter: "blur(10px)",
+      WebkitBackdropFilter: "blur(10px)"
     },
     close: {
       position: "absolute",
@@ -41,7 +41,8 @@ const style = {
       border: "0",
       WebkitAppearance: "none",
       background: "none",
-      cursor: "pointer"
+      cursor: "pointer",
+      zIndex: "100"
     }
   }
 };
@@ -58,7 +59,7 @@ const Modal = ({ children, activator }) => {
         >
           X
         </button>
-        <div className="modal-body">{children}</div>
+        <div style={style.modal.body}>{children}</div>
       </div>
     </div>
   );

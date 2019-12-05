@@ -55,11 +55,20 @@ const style = {
     screenshot: {
       width: "100%"
     },
-    text: {
+    quote: {
       color: "rgba(255,255,255,0.7)",
       padding: "1.25rem 1.5rem",
       fontStyle: "italic",
+      fontWeight: "lighter",
+      borderBottom: "1px solid rgba(255,255,255,0.3)"
+    },
+    text: {
+      color: "rgba(255,255,255,0.7)",
+      padding: "1.25rem 1.5rem",
       fontWeight: "lighter"
+    },
+    link: {
+      color: "#EDC01D"
     }
   }
 };
@@ -99,7 +108,9 @@ const Inventory = props => {
           >
             <div
               style={{
-                backgroundColor: getItemTierTypeColor(item.inventory.tierTypeName),
+                backgroundColor: getItemTierTypeColor(
+                  item.inventory.tierTypeName
+                ),
                 padding: "1.25rem 1.5rem",
                 fontFamily: "sans-serif"
               }}
@@ -118,8 +129,11 @@ const Inventory = props => {
                 alt="screenshot"
               />
             )}
-            <div style={style.modal.text}>
-              <p>{item.displayProperties.description}</p>
+            <div>
+              <p style={style.modal.quote}>
+                {item.displayProperties.description}
+              </p>
+              <p style={style.modal.text}>Intrinsic Perk goes here...</p>
             </div>
           </Modal>
         ))}
