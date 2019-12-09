@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Globals } from "../Globals";
 import { ReactComponent as Arrow } from "../../assets/images/arrow.svg";
 import DataContext from "../Context";
 import Modal from "./Modal";

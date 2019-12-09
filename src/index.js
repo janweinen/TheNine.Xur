@@ -12,7 +12,6 @@ import {
 import { DataProvider } from "./components/Context";
 import { getBGImagePath } from "./components/utils/backgroundImage";
 import Default from "./assets/images/Default.jpg";
-import { getPerk } from "./components/utils/getXurInventory";
 
 const style = {
   fontFamily: "sans-serif",
@@ -44,8 +43,6 @@ const App = () => {
         const reset = await checkReset();
         const xur = await firestoreRequest("vendors", "xur");
         const bgImagePath = await getBGImagePath(xur.location);
-        console.log(reset);
-
         let nextRefreshDate = "";
         setbBgImage(bgImagePath);
         if (
@@ -59,12 +56,10 @@ const App = () => {
           });
           setMessage("DOWNLOADING FROM BUNGIE");
           const xurInventory = await getXurInventory();
-          const test = await getPerk();
-          console.log(test);
           await firestoreSave("inventories", "xur", {
             [nextRefreshDate]: test
           });
-          setData(test);
+          setData(xurInventory);
         } else {
           nextRefreshDate = xur.nextRefreshDate;
           setMessage("DOWNLOADING FROM DATABASE");

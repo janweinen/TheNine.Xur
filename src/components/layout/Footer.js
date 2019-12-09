@@ -44,7 +44,7 @@ const Footer = () => {
     intrinsicPerk: {
       icon: XurIcon,
       description:
-        "Xûr sells objects of legendary power. He accepts his own currency, in service of his own enigmatic goals - or those of equally cryptic masters. Mysterious, too, is the nature of his presence in the Tower. Does he have some arrangement with the Vanguard or the Speaker? Are there those among the Guardian elite who understand Xûr's nature and ultimate purpose? Or have all efforts to control his comings and goings simply failed?"
+        "Xûr sells objects of legendary power. He accepts his own currency, in service of his own enigmatic goals - or those of equally cryptic masters. Mysterious, too, is the nature of his presence in the Tower. Does he have some arrangement with the Vanguard or the Speaker? Are there those among the Guardian elite who understand Xûr's nature and ultimate purpose? Or have all efforts to control his comings and goings simply failed? – The Nine are watching you. Therefore this site uses cookies."
     }
   };
   return (

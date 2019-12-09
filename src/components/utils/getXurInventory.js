@@ -11,24 +11,10 @@ export const getXurInventory = async () => {
   const jsonWorldContentPaths = await getJSONWorldContentPaths(
     manifest.Response.jsonWorldContentPaths.en
   );
-  const data = Object.values(
-    result.Response.sales.data[2190858386].saleItems
-  ).map(
-    item => jsonWorldContentPaths.DestinyInventoryItemDefinition[item.itemHash]
-  );
-  return data;
-};
-
-export const getPerk = async () => {
-  const result = await getXurEndpoint();
-  const manifest = await getManifest();
-  const jsonWorldContentPaths = await getJSONWorldContentPaths(
-    manifest.Response.jsonWorldContentPaths.en
-  );
   const data = Object.values(result.Response.sales.data[2190858386].saleItems);
   let allPerks = [];
   let intrinsicPerk = [];
-  const p = data.map(item => {
+  const processedData = data.map(item => {
     const items =
       jsonWorldContentPaths.DestinyInventoryItemDefinition[item.itemHash];
     if ("sockets" in items) {
@@ -67,5 +53,5 @@ export const getPerk = async () => {
       allPerks: false
     };
   });
-  return p;
+  return processedData;
 };
