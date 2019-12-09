@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "./Modal";
-import XurScreenshot from "../../assets/images/xur_screenshot.jpg";
-import XurIcon from "../../assets/images/xur_icon.png";
+import XurScreenshot from "../../assets/images/XurScreenshot.jpg";
+import XurIcon from "../../assets/images/XurIcon.png";
 
 const style = {
   footer: {
