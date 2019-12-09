@@ -45,8 +45,7 @@ const App = () => {
         const xur = await firestoreRequest("vendors", "xur");
         const bgImagePath = await getBGImagePath(xur.location);
         console.log(reset);
-        //const test = await getPerk();
-        //console.log(test);
+
         let nextRefreshDate = "";
         setbBgImage(bgImagePath);
         if (
@@ -60,10 +59,12 @@ const App = () => {
           });
           setMessage("DOWNLOADING FROM BUNGIE");
           const xurInventory = await getXurInventory();
-          firestoreSave("inventories", "xur", {
-            [nextRefreshDate]: xurInventory
+          const test = await getPerk();
+          console.log(test);
+          await firestoreSave("inventories", "xur", {
+            [nextRefreshDate]: test
           });
-          setData(xurInventory);
+          setData(test);
         } else {
           nextRefreshDate = xur.nextRefreshDate;
           setMessage("DOWNLOADING FROM DATABASE");

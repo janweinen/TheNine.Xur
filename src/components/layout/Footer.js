@@ -29,67 +29,30 @@ const style = {
   },
   about: {
     marginRight: "2em"
-  },
-  modal: {
-    header: {
-      backgroundColor: "#522f65",
-      padding: "1.25rem 1.5rem",
-      fontFamily: "sans-serif",
-      name: {
-        color: "rgba(255,255,255,1)",
-        fontSize: "2em"
-      },
-      type: {
-        color: "rgba(255,255,255,0.7)",
-        fontSize: "1em"
-      }
-    },
-    screenshot: {
-      width: "100%"
-    },
-    quote: {
-      color: "rgba(255,255,255,0.7)",
-      padding: "1.25rem 1.5rem",
-      fontStyle: "italic",
-      fontWeight: "lighter",
-      borderBottom: "1px solid rgba(255,255,255,0.3)"
-    },
-    text: {
-      color: "rgba(255,255,255,0.7)",
-      padding: "1.25rem 1.5rem",
-      fontWeight: "lighter"
-    },
-    link: {
-      color: "#EDC01D"
-    }
   }
 };
 
 const Footer = () => {
+  const item = {
+    name: "Jan Weinen",
+    description: "Web Developer from Cologne",
+    itemTypeAndTierDisplayName: "Web Developer and Hunter Main",
+    tierTypeName: "Normal",
+    intrinsicPerk: {
+      icon: null
+    }
+  };
   return (
     <footer style={style.footer}>
       <Modal
+        item={item}
         activator={({ setShow }) => (
           <div style={style.about} onClick={() => setShow(true)}>
             <span style={style.icon}>A</span>
             <span style={style.title}>ABOUT</span>
           </div>
         )}
-      >
-        <div style={style.modal.header}>
-          <div style={style.modal.header.name}>Jan Weinen</div>
-          <div style={style.modal.header.type}>Web Developer and Hunter Main</div>
-        </div>
-        <img style={style.modal.screenshot} src={Hunter} alt="screenshot" />
-        <div>
-          <p style={style.modal.quote}>Per Audacia Ad Astra!</p>
-          <p style={style.modal.text}>
-            This website is developed by{" "}
-            <a style={style.modal.link}href="https://twitter.com/JanWeinen">@janweinen</a>, WebDeveloper
-            from Cologne working in online advertising.
-          </p>
-        </div>
-      </Modal>
+      />
     </footer>
   );
 };

@@ -3,6 +3,9 @@ import {
   getManifest,
   getJSONWorldContentPaths
 } from "../Bungie";
+import { Globals } from "../Globals";
+
+import { firestoreRequest, firestoreSave, firestoreUpdate } from "../Firebase";
 
 export const getXurInventory = async () => {
   const result = await getXurEndpoint();
@@ -32,12 +35,6 @@ export const getPerk = async () => {
       jsonWorldContentPaths.DestinyInventoryItemDefinition[item.itemHash];
     if ("sockets" in items) {
       allPerks = items.sockets.socketEntries.map(entries => {
-        if (entries.socketTypeHash === parseInt("3956125808", 10)) {
-          intrinsicPerk =
-            jsonWorldContentPaths.DestinyInventoryItemDefinition[
-              entries.singleInitialItemHash
-            ];
-        }
         return jsonWorldContentPaths.DestinyInventoryItemDefinition[
           entries.singleInitialItemHash
         ];
@@ -45,16 +42,26 @@ export const getPerk = async () => {
     } else {
       allPerks = [];
     }
+    intrinsicPerk = allPerks.filter(function(key) {
+      return key && key.itemTypeDisplayName === "Intrinsic";
+    });
     return {
+      hash: items.hash,
       name: items.displayProperties.name,
-      icon: items.displayProperties.icon,
+      icon: Globals.url.bungie + items.displayProperties.icon,
       itemTypeDisplayName: items.itemTypeDisplayName,
       tierTypeName: items.inventory.tierTypeName,
-      screenshot: items.screenshot || "",
+      screenshot:
+        items.screenshot === undefined
+          ? false
+          : Globals.url.bungie + items.screenshot,
       description: items.displayProperties.description,
       itemType: items.itemType,
-      intrinsicPerk: intrinsicPerk,
-      allPerks: allPerks
+      intrinsicPerk:
+        intrinsicPerk[0] === undefined
+          ? false
+          : intrinsicPerk[0].displayProperties,
+      allPerks: false
     };
   });
   return p;

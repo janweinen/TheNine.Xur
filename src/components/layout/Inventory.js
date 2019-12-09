@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Globals } from "../Globals";
 import { ReactComponent as Arrow } from "../../assets/images/arrow.svg";
 import DataContext from "../Context";
 import Modal from "./Modal";
-import { getItemTierTypeColor } from "../utils/getItemTierTypeColor";
 
 const style = {
   inventory: {
@@ -37,56 +36,19 @@ const style = {
     width: "1em",
     opacity: "0.5",
     marginLeft: "1em"
-  },
-  modal: {
-    header: {
-      backgroundColor: "rgba(206, 173, 50, 1)",
-      padding: "1.25rem 1.5rem",
-      fontFamily: "sans-serif",
-      name: {
-        color: "rgba(255,255,255,1)",
-        fontSize: "2em"
-      },
-      type: {
-        color: "rgba(255,255,255,0.7)",
-        fontSize: "1em"
-      }
-    },
-    screenshot: {
-      width: "100%"
-    },
-    quote: {
-      color: "rgba(255,255,255,0.7)",
-      padding: "1.25rem 1.5rem",
-      fontStyle: "italic",
-      fontWeight: "lighter",
-      borderBottom: "1px solid rgba(255,255,255,0.3)"
-    },
-    text: {
-      color: "rgba(255,255,255,0.7)",
-      padding: "1.25rem 1.5rem",
-      fontWeight: "lighter"
-    },
-    link: {
-      color: "#EDC01D"
-    }
   }
 };
 
 const Inventory = props => {
   const inventory = useContext(DataContext);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const types = props.type.split(",").map(x => {
-      return parseInt(x, 10);
+  const types = props.type.split(",").map(x => {
+    return parseInt(x, 10);
+  });
+  const data = inventory.filter(item => {
+    return types.some(type => {
+      return type === item.itemType;
     });
-    const filteredData = inventory.filter(item => {
-      return types.some(type => {
-        return type === item.itemType;
-      });
-    });
-    setData(filteredData);
-  }, [inventory, props.type]);
+  });
   return (
     <div style={style.inventory}>
       <div style={style.topBar}>
@@ -96,46 +58,17 @@ const Inventory = props => {
       <div style={style.iconContainer}>
         {data.map(item => (
           <Modal
+            item={item}
             key={item.hash}
             activator={({ setShow }) => (
               <img
-                src={Globals.url.bungie + item.displayProperties.icon}
+                src={item.icon}
                 alt="icon"
                 style={style.icon}
                 onClick={() => setShow(true)}
               />
             )}
-          >
-            <div
-              style={{
-                backgroundColor: getItemTierTypeColor(
-                  item.inventory.tierTypeName
-                ),
-                padding: "1.25rem 1.5rem",
-                fontFamily: "sans-serif"
-              }}
-            >
-              <div style={style.modal.header.name}>
-                {item.displayProperties.name}
-              </div>
-              <div style={style.modal.header.type}>
-                {item.itemTypeAndTierDisplayName}
-              </div>
-            </div>
-            {item.screenshot === undefined ? null : (
-              <img
-                style={style.modal.screenshot}
-                src={Globals.url.bungie + item.screenshot}
-                alt="screenshot"
-              />
-            )}
-            <div>
-              <p style={style.modal.quote}>
-                {item.displayProperties.description}
-              </p>
-              <p style={style.modal.text}>Intrinsic Perk goes here...</p>
-            </div>
-          </Modal>
+          />
         ))}
       </div>
     </div>
