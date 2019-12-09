@@ -12,6 +12,10 @@ import {
 import { DataProvider } from "./components/Context";
 import { getBGImagePath } from "./components/utils/backgroundImage";
 import Default from "./assets/images/Default.jpg";
+import ReactGA from "react-ga";
+
+ReactGA.initialize("UA-143175874-1");
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const style = {
   fontFamily: "sans-serif",
