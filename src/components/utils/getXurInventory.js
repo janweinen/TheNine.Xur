@@ -5,8 +5,6 @@ import {
 } from "../Bungie";
 import { Globals } from "../Globals";
 
-import { firestoreRequest, firestoreSave, firestoreUpdate } from "../Firebase";
-
 export const getXurInventory = async () => {
   const result = await getXurEndpoint();
   const manifest = await getManifest();
@@ -60,7 +58,12 @@ export const getPerk = async () => {
       intrinsicPerk:
         intrinsicPerk[0] === undefined
           ? false
-          : intrinsicPerk[0].displayProperties,
+          : {
+              icon:
+                Globals.url.bungie + intrinsicPerk[0].displayProperties.icon,
+              name: intrinsicPerk[0].displayProperties.name,
+              description: intrinsicPerk[0].displayProperties.description
+            },
       allPerks: false
     };
   });

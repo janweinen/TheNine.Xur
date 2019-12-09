@@ -147,7 +147,7 @@ const Modal = ({ activator, item }) => {
               <div style={style.modal.intrinsicPerk.left}>
                 <img
                   style={style.modal.intrinsicPerk.icon}
-                  src={Globals.url.bungie + item.intrinsicPerk.icon}
+                  src={item.intrinsicPerk.icon}
                   alt="intrinsicPerkIcon"
                 />
               </div>

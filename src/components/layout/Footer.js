@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "./Modal";
-import Hunter from "../../assets/images/Hunter.jpg";
+import XurScreenshot from "../../assets/images/xur_screenshot.jpg";
+import XurIcon from "../../assets/images/xur_icon.png";
 
 const style = {
   footer: {
@@ -34,12 +35,16 @@ const style = {
 
 const Footer = () => {
   const item = {
-    name: "Jan Weinen",
-    description: "Web Developer from Cologne",
-    itemTypeAndTierDisplayName: "Web Developer and Hunter Main",
-    tierTypeName: "Normal",
+    name: "Xûr",
+    description:
+      "A peddler of strange curios, Xûr's motives are not his own. He bows to his distant masters, the Nine.",
+    screenshot: XurScreenshot,
+    itemTypeDisplayName: "Agent of the Nine",
+    tierTypeName: "Common",
     intrinsicPerk: {
-      icon: null
+      icon: XurIcon,
+      description:
+        "Xûr sells objects of legendary power. He accepts his own currency, in service of his own enigmatic goals - or those of equally cryptic masters. Mysterious, too, is the nature of his presence in the Tower. Does he have some arrangement with the Vanguard or the Speaker? Are there those among the Guardian elite who understand Xûr's nature and ultimate purpose? Or have all efforts to control his comings and goings simply failed?"
     }
   };
   return (
