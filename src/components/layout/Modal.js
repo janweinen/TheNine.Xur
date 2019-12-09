@@ -66,7 +66,9 @@ const style = {
       },
       right: {
         display: "inline-block",
-        width: "80%"
+        width: "80%",
+        height: "126px",
+        overflow: "scroll"
       },
       name: {
         display: "block",
