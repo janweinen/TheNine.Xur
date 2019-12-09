@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import { Globals } from "../Globals";
 import { getItemTierTypeColor } from "../utils/getItemTierTypeColor";
 
 const style = {
