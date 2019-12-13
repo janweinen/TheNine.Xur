@@ -61,7 +61,7 @@ const App = () => {
           setMessage("DOWNLOADING FROM BUNGIE");
           const xurInventory = await getXurInventory();
           await firestoreSave("inventories", "xur", {
-            [nextRefreshDate]: test
+            [nextRefreshDate]: xurInventory
           });
           setData(xurInventory);
         } else {
