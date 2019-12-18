@@ -1,5 +1,6 @@
 import React from "react";
 import Inventory from "./Inventory";
+import Timedisplay from "./Timedisplay";
 
 const style = {
   content: {

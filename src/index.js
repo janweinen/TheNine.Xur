@@ -19,7 +19,7 @@ ReactGA.pageview(window.location.pathname + window.location.search);
 
 const style = {
   fontFamily: "sans-serif",
-  minHeight: "100vh",
+  height: window.innerHeight + "px",
   width: "100vw",
   backgroundImage: `url(${Default})`,
   backgroundPosition: "center",
@@ -49,31 +49,37 @@ const App = () => {
         const bgImagePath = await getBGImagePath(xur.location);
         let nextRefreshDate = "";
         setbBgImage(bgImagePath);
-        if (
-          reset.done &&
-          reset.nextRefreshDate !== xur.nextRefreshDate &&
-          reset.inventoryLength > 2
-        ) {
-          nextRefreshDate = reset.nextRefreshDate;
-          firestoreUpdate("vendors", "xur", {
-            nextRefreshDate: nextRefreshDate
-          });
-          setMessage("DOWNLOADING FROM BUNGIE");
-          const xurInventory = await getXurInventory();
-          await firestoreSave("inventories", "xur", {
-            [nextRefreshDate]: xurInventory
-          });
-          setData(xurInventory);
-        } else {
-          nextRefreshDate = xur.nextRefreshDate;
-          setMessage("DOWNLOADING FROM DATABASE");
-          const databaseInventory = await firestoreRequest(
-            "inventories",
-            "xur"
-          );
-          setData(databaseInventory[nextRefreshDate]);
+        if (reset.done && reset.inventoryLength > 2) {
+          if (reset.nextRefreshDate !== xur.nextRefreshDate) {
+            nextRefreshDate = reset.nextRefreshDate;
+            firestoreUpdate("vendors", "xur", {
+              nextRefreshDate: nextRefreshDate
+            });
+            setMessage("DOWNLOADING FROM BUNGIE");
+            const xurInventory = await getXurInventory();
+            await firestoreSave("inventories", "xur", {
+              [nextRefreshDate]: xurInventory
+            });
+            setData({
+              inventory: xurInventory,
+              nextRefreshDate: nextRefreshDate
+            });
+          } else if (reset.nextRefreshDate === xur.nextRefreshDate) {
+            nextRefreshDate = xur.nextRefreshDate;
+            setMessage("DOWNLOADING FROM DATABASE");
+            const databaseInventory = await firestoreRequest(
+              "inventories",
+              "xur"
+            );
+            setData({
+              inventory: databaseInventory[nextRefreshDate],
+              nextRefreshDate: nextRefreshDate
+            });
+          }
+          setLoading(false);
+        } else if (!reset.done) {
+          setMessage("XÛR RETURNS ON FRIDAY");
         }
-        setLoading(false);
       } catch (error) {
         setMessage("Error: " + error);
       }

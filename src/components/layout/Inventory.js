@@ -39,11 +39,11 @@ const style = {
 };
 
 const Inventory = props => {
-  const inventory = useContext(DataContext);
+  const context = useContext(DataContext);
   const types = props.type.split(",").map(x => {
     return parseInt(x, 10);
   });
-  const data = inventory.filter(item => {
+  const data = context.inventory.filter(item => {
     return types.some(type => {
       return type === item.itemType;
     });
