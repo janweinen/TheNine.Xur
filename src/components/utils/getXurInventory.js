@@ -1,7 +1,8 @@
 import {
   getXurEndpoint,
   getManifest,
-  getJSONWorldContentPaths
+  getJSONWorldContentPaths,
+  getClanMembers
 } from "../Bungie";
 import { Globals } from "../Globals";
 

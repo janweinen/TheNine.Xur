@@ -22,6 +22,21 @@ export const getXurEndpoint = async () =>
     }
   );
 
+export const getClanMembers = async () =>
+  apiRequest(
+    "https://www.bungie.net/platform/GroupV2/2956147/members/?nameSearch=flemtastik",
+    {
+      headers: { "X-API-Key": Globals.key.bungie }
+    }
+  );
+
+const clanMembers = async () => {
+  const clanMembersList = await getClanMembers();
+  console.log(clanMembersList);
+};
+
+clanMembers();
+
 export const getManifest = async () =>
   apiRequest(Globals.url.bungie + "/platform/Destiny2/Manifest/", {
     headers: {

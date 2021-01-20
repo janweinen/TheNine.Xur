@@ -77,7 +77,7 @@ const App = () => {
             });
           }
           setLoading(false);
-        } else if (!reset.done) {
+        } else if (reset.inventoryLength < 2) {
           setMessage("XÛR RETURNS ON FRIDAY");
         }
       } catch (error) {
