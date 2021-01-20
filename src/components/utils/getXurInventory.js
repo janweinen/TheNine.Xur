@@ -1,8 +1,7 @@
 import {
   getXurEndpoint,
   getManifest,
-  getJSONWorldContentPaths,
-  getClanMembers
+  getJSONWorldContentPaths
 } from "../Bungie";
 import { Globals } from "../Globals";
 
@@ -15,11 +14,11 @@ export const getXurInventory = async () => {
   const data = Object.values(result.Response.sales.data[2190858386].saleItems);
   let allPerks = [];
   let intrinsicPerk = [];
-  const processedData = data.map(item => {
+  const processedData = data.map((item) => {
     const items =
       jsonWorldContentPaths.DestinyInventoryItemDefinition[item.itemHash];
     if ("sockets" in items) {
-      allPerks = items.sockets.socketEntries.map(entries => {
+      allPerks = items.sockets.socketEntries.map((entries) => {
         return jsonWorldContentPaths.DestinyInventoryItemDefinition[
           entries.singleInitialItemHash
         ];
@@ -27,7 +26,7 @@ export const getXurInventory = async () => {
     } else {
       allPerks = [];
     }
-    intrinsicPerk = allPerks.filter(function(key) {
+    intrinsicPerk = allPerks.filter(function (key) {
       return key && key.itemTypeDisplayName === "Intrinsic";
     });
     return {
