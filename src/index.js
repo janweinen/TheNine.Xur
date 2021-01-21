@@ -48,6 +48,7 @@ const App = () => {
         const xur = await firestoreRequest("vendors", "xur");
         const bgImagePath = await getBGImagePath(xur.location);
         let nextRefreshDate = "";
+        console.log(reset.nextRefreshDate);
         setbBgImage(bgImagePath);
         if (reset.done && reset.inventoryLength > 2) {
           if (reset.nextRefreshDate !== xur.nextRefreshDate) {
