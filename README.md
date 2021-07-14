@@ -1,4 +1,4 @@
-## XÛR - Agent of The Nine
+## XÛR - Agent of The Nine (Discontinued)
 
 React App to display Xûr's weekly changing inventory from the Destiny 2 API.
 
